@@ -13,3 +13,5 @@ git commit -m "$COMMIT_MSG"
 git push origin main
 
 echo "Changes pushed to the repository."
+
+# uj sor
