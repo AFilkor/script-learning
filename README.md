@@ -1,8 +1,9 @@
 # Shell Scripting Cheat Sheet
 
-Ez a cheat sheet a **shell scripting** alapjait és leggyakoribb parancsait foglalja össze, automatizálás, rendszeradminisztráció és DevOps feladatokhoz.
+Ez a cheat sheet a **shell scripting** alapjait és leggyakoribb parancsait foglalja össze.
 
 ---
+##  Script
 
 ```bash
 #!/bin/bash
@@ -106,6 +107,132 @@ greet "Világ"
 
 ```bash
 set -e   # Kilép, ha bármelyik parancs hibát jelez
+```
+
+---
+# PowerShell Cheat Sheet
+
+Ez a cheat sheet a **PowerShell** alapjait és leggyakoribb parancsait foglalja össze.
+
+---
+
+##  Script indítás
+
+Windows rendszeren általában nem szükséges, de `.ps1` fájlok futtatásához:
+
+```powershell
+# PowerShell script file: script.ps1
+```
+
+* PowerShell promptból futtatható: `.\script.ps1`
+
+---
+
+## 🗂️ Fájlkezelés
+
+| Parancs         | Leírás                          | Példa                                         |
+| --------------- | ------------------------------- | --------------------------------------------- |
+| `Get-ChildItem` | Könyvtár tartalmának listázása  | `Get-ChildItem -Path C:\Users`                |
+| `Set-Location`  | Könyvtár váltás                 | `Set-Location C:\Users`                       |
+| `Get-Location`  | Aktuális könyvtár megjelenítése | `Get-Location`                                |
+| `Copy-Item`     | Fájl/könyvtár másolása          | `Copy-Item C:\source.txt C:\dest.txt`         |
+| `Move-Item`     | Fájl mozgatása/átnevezése       | `Move-Item C:\regi.txt C:\uj.txt`             |
+| `Remove-Item`   | Fájl/könyvtár törlése           | `Remove-Item C:\fajl.txt`                     |
+| `New-Item`      | Fájl vagy könyvtár létrehozása  | `New-Item -Path C:\ujfajl.txt -ItemType File` |
+| `Get-Content`   | Fájl tartalmának megtekintése   | `Get-Content C:\fajl.txt`                     |
+| `Set-Content`   | Fájl tartalmának írása          | `Set-Content C:\fajl.txt "Új tartalom"`       |
+
+---
+
+## ⚙️ Folyamatok és erőforrások
+
+| Parancs         | Leírás                    | Példa                          |
+| --------------- | ------------------------- | ------------------------------ |
+| `Get-Process`   | Futó folyamatok listázása | `Get-Process`                  |
+| `Stop-Process`  | Folyamat leállítása       | `Stop-Process -Name notepad`   |
+| `Get-Service`   | Szolgáltatások listázása  | `Get-Service`                  |
+| `Start-Service` | Szolgáltatás indítása     | `Start-Service -Name wuauserv` |
+| `Stop-Service`  | Szolgáltatás leállítása   | `Stop-Service -Name wuauserv`  |
+
+---
+
+## 🌐 Hálózat és adatátvitel
+
+| Parancs             | Leírás                   | Példa                                                                 |
+| ------------------- | ------------------------ | --------------------------------------------------------------------- |
+| `Invoke-WebRequest` | Fájl vagy adat letöltése | `Invoke-WebRequest -Uri https://pelda.com/fajl.zip -OutFile fajl.zip` |
+| `Invoke-RestMethod` | API hívás JSON adatokkal | `Invoke-RestMethod -Uri https://api.pelda.com`                        |
+| `Test-Connection`   | Ping parancs             | `Test-Connection google.com`                                          |
+
+---
+
+## 🔍 Szövegfeldolgozás
+
+| Parancs         | Leírás               | Példa                                                 |                                |
+| --------------- | -------------------- | ----------------------------------------------------- | ------------------------------ |
+| `Select-String` | Mintakeresés fájlban | `Select-String -Pattern "keresett" -Path C:\fajl.txt` |                                |
+| `Sort-Object`   | Lista rendezése      | `Get-Process                                          | Sort-Object CPU -Descending`   |
+| `Where-Object`  | Feltételes szűrés    | `Get-Process                                          | Where-Object {$_.CPU -gt 100}` |
+
+---
+
+## ✏️ Szövegszerkesztők / Szerkesztés
+
+PowerShell script fájlok szerkeszthetők:
+
+| Eszköz    | Leírás                      | Példa                |
+| --------- | --------------------------- | -------------------- |
+| `notepad` | Egyszerű szerkesztő         | `notepad script.ps1` |
+| `VSCode`  | Haladó, grafikus szerkesztő | `code script.ps1`    |
+
+---
+
+## 🛠️ Haladó PowerShell funkciók
+
+**Változók**
+
+```powershell
+$nev = "Adam"
+Write-Output "Hello, $nev"
+```
+
+**Feltételek**
+
+```powershell
+if (Test-Path "C:\fajl.txt") {
+    Write-Output "A fájl létezik"
+}
+```
+
+**Ciklusok**
+
+```powershell
+for ($i=1; $i -le 3; $i++) {
+    Write-Output "Szám: $i"
+}
+
+foreach ($item in 1..3) {
+    Write-Output $item
+}
+```
+
+**Függvények**
+
+```powershell
+function Greet($nev) {
+    Write-Output "Hello, $nev"
+}
+Greet "Világ"
+```
+
+**Hibakezelés**
+
+```powershell
+try {
+    Remove-Item "C:\nemletezo.txt"
+} catch {
+    Write-Output "Hiba történt: $_"
+}
 ```
 
 ---
